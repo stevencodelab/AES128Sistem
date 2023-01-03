@@ -1,0 +1,12 @@
+Website Enkripsi & Dekripsi Dokumen 
+Implementasi dari algoritma Advanced Encryption Standart 128 (AES) yang dibuat untuk kepentingan Tugas Akhir (Skripsi) Konsentrasi Keamanan Komputer Universitas Teknologi Yogyakarta.
+
+dashboard template yang digunakan : https://startbootstrap.com/theme/sb-admin-2
+database : PhpMyadmin
+xampp control panel
+
+By : laksamana steven morison (Universitas Teknologi Yogyakarta)
+
+facebook : https://www.facebook.com/steven.morizon
+instagram : _smorison
+github : https://github.com/AntiTeror88
