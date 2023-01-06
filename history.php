@@ -2,30 +2,28 @@
 session_start();
 include('../aes128/config.php');
 if(empty($_SESSION['username'])){
-  header("location:../aes128/login.php");
+header("location:../aes128/login.php");
 }
 $last = $_SESSION['username'];
-$sqlupdate = "UPDATE users SET last_active=now() WHERE username='$last'";
+$sqlupdate = "UPDATE tb_user SET lastactive=now() WHERE username='$last'";
 $queryupdate = mysql_query($sqlupdate);
 ?>
 
-<?php 
-include('includes/header.php');
-include('includes/navbar.php');
-?>
+<?php include('includes/header.php');?>
+<?php include('includes/navbar.php');?>
+
 <!DOCTYPE html>
 <html>
-  <?php
+<?php
 $user = $_SESSION['username'];
 $query = mysql_query("SELECT namalengkap,statuslogin,lastactive FROM tb_user WHERE username='$user'");
 $data = mysql_fetch_array($query);
 ?>
- <head>
+
+<head>
     <title> <?php echo $data['namalengkap']; ?> - AES-128</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" type="text/css" href="../aes128/plugins/datatables/js/jquery.dataTables.js">
-    
 </head>
  <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
@@ -98,7 +96,7 @@ $data = mysql_fetch_array($query);
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                     aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="#">
+                    <a class="dropdown-item" href="profilview.php">
                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                         Profile
                     </a>
@@ -140,8 +138,35 @@ $data = mysql_fetch_array($query);
   <div class="card">
   <div class="card-header">
     <h4></h4>
+    <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Hapus Data</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
 
+                <form action="hapusfile.php" method="POST">
+
+                    <div class="modal-body">
+
+                        <input type="hidden" name="delete_id" id="delete_id">
+
+                        <h4>Anda Yakin Ingin Menghapus File Ini ??</h4>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" name="deletedata" class="btn btn-primary">Hapus</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
   </div>
+  
+    
   <div class="card-body">
   <div class="card shadow mb-4">
   <div class="card-header py-3">
@@ -195,15 +220,9 @@ $data = mysql_fetch_array($query);
                               echo "<span class='btn btn-outline-dark'>Status Tidak Diketahui</span>";
                             }
                              ?>
-                         <td><?php if ($data['status'] == 1) {
-                              echo "<a href='hapusfile.php' class='btn btn-outline-danger'><i class='fa fa-trash'></i></a>";
-                            }elseif ($data['status'] == 2) {
-                              echo "<a class='btn btn-outline-danger'><i class='fa fa-trash'></i></a>     
-                              ";
-                            }else {
-                              echo "<span class='btn btn-outline-dark'>Status Tidak Diketahui</span>";
-                            }
-                             ?>
+                         <td>
+                        <button type="button" class="btn btn-danger deletebtn" ><i class='fa fa-trash' aria-hidden='true'></i></button>
+                      </td>
                          </td>
                             </td>
                           </td>
@@ -218,19 +237,6 @@ $data = mysql_fetch_array($query);
         </div>
       </div>
     </div>
-    <script src="../assets/js/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-        $('#file').dataTable({
-            "bPaginate": true,
-            "bLengthChange": false,
-            "bFilter": true,
-            "bInfo": true,
-            "bAutoWidth": true,
-          "order": [0, "asc"]
-        });
-        });
-        </script>
     </div> 
 </div>
 
