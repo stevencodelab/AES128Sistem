@@ -1,0 +1,45 @@
+- Buat database baru dengan nama database sesuai dengan file sql yang ada pada folder Database
+- lakukan proses import database.
+
+====---//AKUN LOGIN HAK AKSES\\---====
+Administrator
+username    : admin
+password    : admin
+
+User 1
+username    : pihak 1
+password    : user
+
+User 1
+username    : pihak 2
+password    : user
+
+=====-----/////FAQ ERROR\\\\\-----=====
+
+??. Unknown database ''
+!!. Database belum dibuat atau nama database sama
+>>. Buat database baru atau perbaiki nama database
+
+??. Access denied for user ''
+!!. username atau password akun phpmyadmin tidak sesuai
+>>. sesuaikan koneksi database dengan akun phpmyadmin
+
+??. Uncaught Error: Call to undefined function mysql_connect()
+!!. fungsi mysql tidak tersedia atau sudah tidak di dukung
+>>. Gunakan versi PHP5 atau versi xampp yang lawas (jadul)
+
+??. mysqli::real_connect(): / Warning: mysqli_connect():
+!!. fungsi mysqli tidak tersedia atau tidak di dukung
+>>. Gunakan versi PHP7 ke atas atau versi Xampp terbaru
+
+??. Style tampilan antarmuka acak-acakan (tidak rapih)
+!!. file css / style tidak ditemukan atau belum responsif
+>>. Gunakan internet saat menjalankan-nya atau sesuaikan ukuran tampilan
+
+#NOTE:
+Berberapa masalah dan solusi penanganan di atas mungkin saja tidak dapat
+menyelesaikan masalah dikarenakan beberapa faktor lain atau solusi lain.
+
+
+By : Laksamana Steven Morison
+Universitas Teknologi Yogyakarta
