@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 include('../aes128/config.php');
 if(empty($_SESSION['username'])){
 header("location:../aes128/login.php");
@@ -19,6 +20,7 @@ $user = $_SESSION['username'];
 $query = mysql_query("SELECT namalengkap,statuslogin,lastactive FROM tb_user WHERE username='$user'");
 $data = mysql_fetch_array($query);
 ?>
+
 
 <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -48,10 +50,22 @@ $data = mysql_fetch_array($query);
                         </div>
                     </form>
 
+                    
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
+                    <div class="topbar-divider d-none d-sm-block"></div>
 
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                    
+<!-- Nav Item - Clock-->
+<li class="nav-item dropdown no-arrow">
+    <a class="nav-link dropdown-toggle" href="" id="userDropdown" role="button"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div>
+        <span id="salam" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
+        <span id="jam" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
+    </div>
+    
+        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -77,6 +91,7 @@ $data = mysql_fetch_array($query);
 
                         
 
+                        
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
@@ -91,7 +106,7 @@ $data = mysql_fetch_array($query);
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="profilview.php">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
