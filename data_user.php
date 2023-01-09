@@ -1,8 +1,9 @@
 <?php
+$title = 'Halaman Data User';
 session_start();
 include('../aes128/config.php');
 if(empty($_SESSION['username'])){
-  header("location:../aes128/login.php");
+header("location:../aes128/login.php");
 }
 $last = $_SESSION['username'];
 $sqlupdate = "UPDATE tb_user SET lastactive=now() WHERE username='$last'";
@@ -12,7 +13,6 @@ $queryupdate = mysql_query($sqlupdate);
 <?php include('includes/header.php');?>
 <?php include('includes/navbar.php');?>
 
-
 <!DOCTYPE html>
 <html>
 <?php
@@ -20,6 +20,8 @@ $user = $_SESSION['username'];
 $query = mysql_query("SELECT namalengkap,statuslogin,lastactive FROM tb_user WHERE username='$user'");
 $data = mysql_fetch_array($query);
 ?>
+
+
 <head>
     <title> <?php echo $data['namalengkap']; ?> - AES-128</title>
     <meta charset="utf-8">
@@ -83,6 +85,53 @@ $data = mysql_fetch_array($query);
                         </li>
 
                         
+                        <ul class="navbar-nav ml-auto">
+                    <div class="topbar-divider d-none d-sm-block"></div>
+            <li class="nav-item dropdown no-arrow">
+    <a class="nav-link dropdown-toggle" href="" id="userDropdown" role="button"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div>
+        <span id="salam" class="mr-2 d-none d-lg-inline text-gray-600 small"><?php
+//  Setting Waktu Indonesia
+date_default_timezone_set('Asia/Jakarta');
+
+// Format Waktu 24 Jam
+$jam = date('G');
+if ( $jam >= 5 && $jam <= 11 ) {
+    echo "Selamat Pagi";
+} else if ( $jam >= 12 && $jam <= 18 ) {
+    echo "Siang Ceria";
+} else if ( $jam >= 19 || $jam <= 4 ) {
+    echo "Selamat Malam ";
+}
+?></span>
+        <span id="jam" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
+    </div>
+    
+        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+                        
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -98,7 +147,7 @@ $data = mysql_fetch_array($query);
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="">
+                                <a class="dropdown-item" href="profilview.php">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
@@ -158,6 +207,7 @@ $data = mysql_fetch_array($query);
                                             <th>Nama Lengkap</th>
                                             <th>Status Login</th>
                                             <th>Waktu Terdaftar</th>
+                                
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -169,6 +219,7 @@ $data = mysql_fetch_array($query);
                                        <td><?php echo $data['namalengkap'];?></td>
                                        <td><?php echo $data['statuslogin'];?></td>
                                        <td><?php echo $data['waktu'];?></td>
+                                      
                                     </tr>
                                     <?php
                                     }
