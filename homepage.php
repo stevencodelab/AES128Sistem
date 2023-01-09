@@ -14,10 +14,7 @@ include('konten/navbar.php');
 <ul class="breadcrumb mb-4">
 <li><i class="">&nbsp;</i></li>
               <a>Tentang AES 128</a>
-              
             </ul>
-              
-              
             </ul>
 
 
