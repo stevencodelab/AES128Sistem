@@ -1,6 +1,6 @@
 <?php
+$title = 'Dashboard AES 128';
 session_start();
-
 include('../aes128/config.php');
 if(empty($_SESSION['username'])){
 header("location:../aes128/login.php");
@@ -61,7 +61,23 @@ $data = mysql_fetch_array($query);
     <a class="nav-link dropdown-toggle" href="" id="userDropdown" role="button"
         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <div>
-        <span id="salam" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
+        <span id="salam" class="mr-2 d-none d-lg-inline text-gray-600 small">
+
+        
+<?php
+//  Setting Waktu Indonesia
+date_default_timezone_set('Asia/Jakarta');
+
+// Format Waktu 24 Jam
+$jam = date('G');
+if ( $jam >= 5 && $jam <= 11 ) {
+    echo "Selamat Pagi";
+} else if ( $jam >= 12 && $jam <= 18 ) {
+    echo "Siang Ceria";
+} else if ( $jam >= 19 || $jam <= 4 ) {
+    echo "Selamat Malam ";
+}
+?></span>
         <span id="jam" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
     </div>
     
