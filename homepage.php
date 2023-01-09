@@ -47,7 +47,11 @@ dan dekrip data pada blok 128 bits</legend>
 </div>
 
 </div>
-        </div></div></div></div></div>
+                  </div>
+              </div>
+         </div>
+    </div>
+</div>
 <?php 
 include('includes/footer.php');
 ?>
